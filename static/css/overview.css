@@ -1,0 +1,177 @@
+@charset 'utf-8';
+.overview h2 {
+    margin: 25px 0 10px 0;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+}
+.overview h2 span {
+    color: #24292e;
+}
+.overview h2 a {
+    float: right;
+    color: #586069;
+    font-size: 12px;
+}
+.overview h2 a:hover {
+    color: #0366d6;
+}
+.overview .repository-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.overview .repository-list .repository-box {
+    margin-bottom: 16px;
+    flex-basis: 325px;
+    height: 81px;
+    padding: 16px;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+}
+.overview .repository-list .repository-box a {
+    color: #0366d6;
+    line-height: 22px;
+    font-weight: bold;
+}
+.overview .repository-list .repository-box a:hover {
+    text-decoration: underline;
+}    
+.overview .repository-list .repository-box p.des {
+    height: 18px;
+    line-height: 18px;
+    margin: 8px 0 16px 0;
+    font-size: 12px;
+}    
+.overview .repository-list .repository-box p.category {
+    line-height: 18px;
+}
+.overview .repository-list .repository-box p.category i {
+    margin-right: 6px;
+}
+.overview .contribution {
+    position: relative;
+    margin: 30px 0 8px 0;
+    line-height: 24px;
+}
+.overview .contribution .el-dropdown {
+    float: right;
+    margin-right: 120px;
+    margin-top: -4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.overview .contribution .el-dropdown:hover .el-dropdown-link {
+    color: #0366d6;
+}
+.overview .contribution .year-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 56px;
+    line-height: 18px;
+    padding: 8px 16px;
+    background-color: #0366d6;
+    border-radius: 3px;
+    color: #fff;
+}
+.overview .contribution .timeline-box {
+    width: 605px;
+}
+.overview .contribution .timeline-box .timeline-title {
+    position: relative;                
+    display: inline-block;
+    padding: 4px 8px 4px 0;
+    margin-top: 8px;
+    font-size: 12px;
+    background-color: #fff;
+}
+.overview .contribution .timeline-box .timeline-title::after {
+    position: absolute;
+    top: 16px;
+    content: "";
+    display: block;
+    background-color: #eaecef;
+    height: 1px;
+    width: 605px;
+    z-index: -1;
+}
+.overview .contribution .timeline-box .timeline-title .month {
+    color: #24292e;
+    margin-right: 5px;
+}
+.overview .contribution .timeline-box .timeline-cnt {
+    margin-left: 16px;
+    padding: 24px 0 24px 24px;
+    border-left: 2px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;        
+}
+.overview .contribution .timeline-box .timeline-cnt .discussion-item-icon {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin-top: -7px;
+    margin-left: -40px;
+    line-height: 36px;
+    color: #586069;
+    text-align: center;
+    background-color: #e6ebf1;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+.overview .contribution .timeline-cnt .cnt-title {
+    margin-bottom: 8px;
+    line-height: 20px;
+    cursor: pointer;        
+}
+.overview .contribution .timeline-cnt .cnt-title:hover {
+    color: #0366d6;
+}
+.overview .contribution .timeline-cnt .right-ico {
+    float: right;
+}
+.overview .contribution .timeline-cnt .right-ico {
+    fill: #586069;        
+}
+.overview .contribution .timeline-cnt .right-ico:hover {
+    fill: #0366d6;        
+}
+.overview .contribution .timeline-cnt li {
+    line-height: 20px;
+    margin: 6px 0;
+}
+.overview .contribution .timeline-cnt li a.url {
+    margin-right: 6px;
+    font-size: 13px;
+    color: #0366d6;
+}    
+.overview .contribution .timeline-cnt li a.url:hover {
+    text-decoration: underline;
+}    
+.overview .contribution .timeline-cnt li a.commit {
+    font-size: 12px;
+}    
+.overview .contribution .timeline-cnt li a.commit:hover {
+    color: #0366d6;
+}   
+.overview .contribution .timeline-cnt li .repo-icon svg {
+    margin-bottom: -4px;
+    margin-right: 4px;
+    fill: #586069;
+} 
+.overview .contribution .timeline-cnt li span.type {
+    font-size: 12px;
+}
+.overview .contribution button.more {
+    margin-top: -1px;
+    width: 100%;
+    height: 38px;
+    color: #0366d6;
+    font-size: 12px;
+    font-weight: bold;
+}
+.overview .contribution button.more:hover {
+    background-color: #fff;
+    background-color: #f6f8fa;
+    border-color: #dcdfe6;
+}

@@ -24,9 +24,6 @@ export default {
             stars: null,
             message: 'starred repositories'
         }
-    },
-     created() {
-        this.$emit('select', 3);
     }
 }
 </script>

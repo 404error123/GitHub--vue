@@ -1,4 +1,4 @@
-# vue + element + node.js 仿制 GitHub
+# vue + element 重构 GitHub 页面
 
 ### 使用技术
 

@@ -80,14 +80,7 @@ import '../../static/css/overview.css';
 export default {
     data() {
         return {
-            repositories: [
-                { title: 'Demo', des: '这是一个测试', category: 'css' },
-                { title: 'Demo', des: '这是一个测试', category: 'js' },
-                { title: 'Demo', des: '这是一个测试', category: 'css' },
-                { title: 'Demo', des: '这是一个测试', category: 'css' },
-                { title: 'Demo', des: '这是一个测试', category: 'html' },
-                { title: 'Demo', des: '这是一个测试', category: 'css' },                
-            ],
+            repositories: [],
             year: '2018',
             month: 'October',
             timeline: [
@@ -118,7 +111,9 @@ export default {
         }
     },
     created() {
-        this.$emit('select', 1);
+        this.$axios.get('http://127.0.0.1:5000/overview').then((res) => {
+            this.repositories = JSON.parse(res.data.data);
+        })
     }
 }
 </script>

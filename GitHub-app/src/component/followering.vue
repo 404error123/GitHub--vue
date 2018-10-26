@@ -38,9 +38,6 @@ export default {
             ],
             message: 'followering'
         }
-    },
-    created() {
-        this.$emit('select',5)
     }
 }
 </script>

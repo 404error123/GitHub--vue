@@ -1,25 +1,29 @@
 <template>
     <div>
-        <my-header :user="user"></my-header>
+        <my-header></my-header>
         <div class="main clearfix">
-            <p-aside :user="user"></p-aside>
-            <repository></repository>
+            <router-view></router-view>
         </div>
         <my-footer></my-footer>
     </div>
 </template>
 
 <script>
+import MyHeader from './component/header.vue';
+import MyFooter from './component/footer.vue';
+
 export default {
     data() {
         return {
-            user: {
-                username: 'guoc',
-                nickname: '404error123',
-                imageUrl: '../static/img/head.jpg',
-                website: 'https://www.404error.top'
-            }
+
         }
+    },
+    components: {
+        'my-header': MyHeader,
+        'my-footer': MyFooter
+    },
+    created() {
+        this.$store.commit('getUser')
     }
 }
 </script>

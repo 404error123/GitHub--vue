@@ -51,9 +51,6 @@ export default {
             ],
             message: 'repositories'            
         }
-    },
-    created() {
-        this.$emit('select', 2);
     }
 }
 </script>

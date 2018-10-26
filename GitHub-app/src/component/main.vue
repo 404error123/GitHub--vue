@@ -1,29 +1,34 @@
 <template>
-    <div class="repository">
-        <nav>
-            <ul class="clearfix">
-                <li :class="{ select : select === 1 }">
-                    <router-link :to="{ name: 'overview' }"><span>Overview</span></router-link>
-                </li>
-                <li :class="{ select : select === 2 }">
-                    <router-link :to="{ name: 'storage' }"><span>Repositories</span><i class="num">{{num[0]}}</i></router-link>
-                </li>
-                <li :class="{ select : select === 3 }">
-                    <router-link :to="{ name: 'stars' }"><span>Stars</span><i class="num">{{num[1]}}</i></router-link>
-                </li>
-                <li :class="{ select : select === 4 }">
-                    <router-link :to="{ name: 'followers' }"><span>Followers</span><i class="num">{{num[2]}}</i></router-link>
-                </li>
-                <li :class="{ select : select === 5 }">
-                    <router-link :to="{ name: 'followering' }"><span>Followering</span><i class="num">{{num[3]}}</i></router-link>
-                </li>
-            </ul>
-        </nav>
-        <router-view class="box" @select="selectListen"></router-view>
+    <div>
+        <p-aside></p-aside>
+        <div class="repository">
+            <nav>
+                <ul class="clearfix">
+                    <li>
+                        <router-link exact-active-class="select" :to="{ name: 'overview' }"><span>Overview</span></router-link>
+                    </li>
+                    <li>
+                        <router-link exact-active-class="select" :to="{ name: 'repositories' }"><span>Repositories</span><i class="num">{{num[0]}}</i></router-link>
+                    </li>
+                    <li>
+                        <router-link exact-active-class="select" :to="{ name: 'stars' }"><span>Stars</span><i class="num">{{num[1]}}</i></router-link>
+                    </li>
+                    <li>
+                        <router-link exact-active-class="select" :to="{ name: 'followers' }"><span>Followers</span><i class="num">{{num[2]}}</i></router-link>
+                    </li>
+                    <li>
+                        <router-link exact-active-class="select" :to="{ name: 'followering' }"><span>Followering</span><i class="num">{{num[3]}}</i></router-link>
+                    </li>
+                </ul>
+            </nav>
+            <router-view class="box"></router-view>
+        </div>
     </div>
 </template>
 
 <script>
+import aside from './aside.vue';
+
 export default {
     data() {
         return {
@@ -32,9 +37,10 @@ export default {
         }
     },
     methods: {
-        selectListen(e) {
-            this.select = e;
-        }
+        
+    },
+    components: {
+        'p-aside': aside
     }
 }
 </script>
@@ -52,25 +58,23 @@ export default {
         float: left;
         line-height: 20px;
         margin-right: 16px;
-        margin-bottom: -1px;
-        border-bottom: 2px solid transparent;
     }
-    .repository nav ul li:hover {
-        border-bottom-color: #d1d5da;
-    }
-    .repository nav ul li.select {
-        border-bottom-color: #e36209;
-    }
-    .repository nav ul li.select span {
-        font-weight: bold;
-    }    
     .repository nav ul li a {
         display: block;
         padding: 16px 8px;
         color: #586069;
+        margin-bottom: -1px;
+        border-bottom: 2px solid transparent;
     }
-    .repository nav ul li.select a {
-        color: #24292e;
+    .repository nav ul li a:hover {
+        border-bottom-color: #d1d5da;
+    }
+    .repository nav ul li a.select {
+        border-bottom-color: #e36209;
+        color: #24292e;        
+    }
+    .repository nav ul li a.select span {
+        font-weight: bold;
     }
     .repository nav ul li a i.num {
         display: inline-block;

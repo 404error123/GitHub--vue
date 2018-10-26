@@ -40,9 +40,6 @@ export default {
             ],
             message: 'followers'
         }
-    },
-    created() {
-        this.$emit('select',4)
     }
 }
 </script>

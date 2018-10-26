@@ -19,13 +19,13 @@
                 },
                 {
                  test:/\.(jpg|svg|png|gif)$/,
-                 loader:'url-loader?limit=4096&name=[name].[ext]',
+                 loader:'url-loader',
                  //顺序是反过来的2!1 
                  //[name].[ext]内置提供的，因为本身是先读这个文件
-                 // options:{
-                 //    limit:4096,
-                 //    name:'[name].[ext]'
-                 // }
+                 options:{
+                    limit:4096,
+                    name:'[name].[ext]'
+                 }
                 },
                 {//处理ES6的js
                     test:/\.js$/,

@@ -25,7 +25,7 @@
 
         <empty v-if="!storage" :message="message"></empty>
 
-        <div class="ck-box" v-for="(sto, key) in storage" :key="key">
+        <div class="ck-box pro-box" v-for="(sto, key) in storage" :key="key" v-else>
             <h2><a href="">{{sto.name}}</a></h2>
             <p class="des">{{sto.des}}</p>
             <p class="type-time">
@@ -76,28 +76,5 @@ export default {
         margin-right: 4px;
         margin-top: -2px;
     }
-    .storage .ck-box {
-        padding: 24px 0;
-        border-bottom: 1px solid #e1e4e8;
-    }
-    .storage .ck-box h2 a {
-        line-height: 40px;
-        font-size: 20px;
-        font-weight: normal;
-        color: #0366d6;
-    }
-    .storage .ck-box h2 a:hover {
-        text-decoration: underline;
-    }   
-    .storage .ck-box p.des {
-        line-height: 20px;
-        margin-bottom: 15px;
-    } 
-    .storage .ck-box p.type-time {
-        font-size: 12px;   
-        margin-bottom: 6px;     
-    }
-    .storage .ck-box p span.time {
-        margin-left: 20px;
-    }
+    
 </style>

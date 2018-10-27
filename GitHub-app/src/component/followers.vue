@@ -2,7 +2,7 @@
     <div class="followers">
         <empty v-if="!followers" :message="message"></empty>
         
-        <div class="user" v-for="(user, key) in followers" :key="key">
+        <div class="user" v-for="(user, key) in followers" :key="key" v-else>
             <div class="head-img">
                 <a href="">
                     <img :src="user.headerURL" alt="">
@@ -14,7 +14,7 @@
                 </p>
                 <p class="other">{{user.other}}</p>
             </div>
-            <div class="btn">
+            <div class="rt-btn">
                 <el-button>Unfollow</el-button>
             </div>
         </div>
@@ -38,6 +38,7 @@ export default {
                     other: '',
                 }
             ],
+            // followers: null,
             message: 'followers'
         }
     }

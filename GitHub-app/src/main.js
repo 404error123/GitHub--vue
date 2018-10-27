@@ -6,11 +6,14 @@ import store from './store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import 'nprogress/nprogress.css';
+
 import type from './component/type.vue';
 
 import empty from './component/empty.vue';
 
-import '../static/css/comment.css'
+import '../static/css/comment.css';
+import '../static/css/main.css';
 
 import Axios from 'axios';
 Axios.defaults.crossDomain = true;

@@ -1,5 +1,6 @@
 var express = require('express')
-var User = require('./models/user')
+var User = require('../models/user')
+var Category = require('../models/categories')
 
 var router = express.Router()
 
@@ -8,36 +9,36 @@ router.post('/login', function(req, res) {
     User.findOne({
         nickname: body.name,
         password: body.pwd
-    }).then(function(result, error) {
-        if(error){
-            return res.status(200).json({
-                err_code: 500,
-                message: '错误'
-            })
-        }
+    }).then(function(result) {
+        var user, err_code, message;
         if(result) {
             if(!req.session) {
                 req.session.isLogin = 'user';
             }
-            const user = {
+            user = {
                 imageUrl: result.imageURL,
                 nickname: result.nickname,
                 username: result.realname,
                 website: result.website
             }
-            return res.status(200).json({
-                err_code: 0,
-                message: 'success',
-                data: JSON.stringify(user)
-            })
+            err_code = 0,
+            message = 'success';
         } else {
-            return res.status(200).json({
-                err_code: 1,
-                message: '用户名或密码错误'
-            })
-        }     
+            err_code = 1;
+            message = '用户名或密码错误';
+            user = null;
+        }
+        res.status(200).json({
+            err_code: err_code,
+            message: message,
+            data: JSON.stringify(user)
+        })  
     }).catch(function(error) {
-        console.log(error)
+        console.log(error);
+        res.status(500).json({
+            err_code: 500,
+            message: '错误'
+        })
     }) 
 })
 
@@ -51,19 +52,33 @@ router.get('/signout', function(req, res) {
 
 router.get('/overview', function(req, res) {
     if(req.session) {
-        var data = [
-            { title: 'Demo', des: '这是第一个测试', category: 'css' },
-            { title: 'Demo', des: '这是第二个测试', category: 'js' },
-            { title: 'Demo', des: '这是第三个测试', category: 'css' },
-            { title: 'Demo', des: '这是第四个测试', category: 'css' },
-            { title: 'Demo', des: '这是第五个测试', category: 'html' },
-            { title: 'Demo', des: '这是第六个测试', category: 'css' },                
-        ];
-        res.status(200).json({
-            err_code: 1,
-            message: 'success',
-            data: JSON.stringify(data)
+        Category.find({ show: true }).then((request) => {
+            var data = [];
+            if(request) {
+                for( req of request) {
+                    var a = {
+                        title: req.title,
+                        description: req.description,
+                        type: req.type
+                    };
+                    data.push(a);
+                }
+            } else {
+                data = null;
+            }
+            res.status(200).json({
+                err_code: 1,
+                message: 'success',
+                data: JSON.stringify(data)
+            })
+        }).catch((error) => {
+            console.log(error);
+            res.status(200).json({
+                err_code: 500,
+                message: 'error'
+            })
         })
+       
     }
 })
 

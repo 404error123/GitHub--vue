@@ -4,12 +4,12 @@
             <span>Popular repositories</span>
             <a href="">Customize your pinned repositories</a>
         </h2>
-        <div class="repository-list">
+        <div class="repository-list" v-if="repositories">
             <div class="repository-box" v-for="(repository, key) in repositories" :key="key">
                 <p class="title"><a href="">{{repository.title}}</a></p>
-                <p class="des">{{repository.des}}</p>
+                <p class="des">{{repository.description}}</p>
                 <p class="category">
-                    <type :type="repository.category"></type>
+                    <type :type="repository.type"></type>
                 </p>
             </div>
         </div>
@@ -80,7 +80,7 @@ import '../../static/css/overview.css';
 export default {
     data() {
         return {
-            repositories: [],
+            repositories: null,
             year: '2018',
             month: 'October',
             timeline: [
@@ -112,7 +112,9 @@ export default {
     },
     created() {
         this.$axios.get('http://127.0.0.1:5000/overview').then((res) => {
-            this.repositories = JSON.parse(res.data.data);
+            if(res || res.length) {
+                this.repositories = JSON.parse(res.data.data);                
+            }
         })
     }
 }

@@ -8,7 +8,7 @@
                         Type: <span class="word">{{typeSelect}}<i class="el-icon-caret-bottom"></i></span>
                     </el-button>
                     <el-dropdown-menu class="type-item" slot="dropdown">
-                        <el-dropdown-item v-for="(type, key) in typeItem" :key="key" @click.native="typeSelect = type">{{type}}</el-dropdown-item>
+                        <el-dropdown-item v-for="(type, key) in typeItem" :key="key" @click.native="typeChange(type)">{{type}}</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
                 <el-dropdown class="language" trigger="click">
@@ -16,7 +16,7 @@
                         Language: <span class="word">{{langSelect}}<i class="el-icon-caret-bottom"></i></span>
                     </el-button>
                     <el-dropdown-menu class="language-item" slot="dropdown">
-                        <el-dropdown-item v-for="(lang, key) in langItem" :key="key" @click.native="langSelect = lang">{{lang}}</el-dropdown-item>
+                        <el-dropdown-item v-for="(lang, key) in langItem" :key="key" @click.native="langChange(lang)">{{lang}}</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
                 <el-button class="new" type="success"><i class="el-icon-document"></i>New</el-button>
@@ -25,7 +25,7 @@
 
         <empty v-if="!storage" :message="message"></empty>
 
-        <div class="ck-box pro-box" v-for="(sto, key) in storage" :key="key" v-else>
+        <div class="ck-box pro-box" v-for="(sto, key) in calcStorage" :key="key" v-else>
             <h2><a href="">{{sto.name}}</a></h2>
             <p class="des">{{sto.des}}</p>
             <p class="type-time">
@@ -49,7 +49,31 @@ export default {
                 { name: 'Demo', des: '我的个人主页', type: 'js', time: 8 },
                 { name: 'Test', des: '我的个人主页', type: 'html', time: 1 }                
             ],
-            message: 'repositories'            
+            message: 'repositories'
+        }
+    },
+    computed: {
+        calcStorage() {
+            return this.storage.filter((item) => {
+                switch(this.langSelect) {
+                    case this.langItem[1]:
+                        return item.type === 'css';
+                    case this.langItem[2]:
+                        return item.type === 'html';
+                    case this.langItem[3]:
+                        return item.type === 'js';
+                    default:
+                        return true
+                }
+            })
+        }
+    },
+    methods: {
+        typeChange(type) {
+            this.typeSelect = type
+        },
+        langChange(lang) {
+            this.langSelect = lang;
         }
     }
 }

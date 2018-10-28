@@ -113,7 +113,7 @@ export default {
     created() {
         this.$axios.get('http://127.0.0.1:5000/overview').then((res) => {
             if(res || res.length) {
-                this.repositories = JSON.parse(res.data.data);                
+                this.repositories = JSON.parse(res.data.data);
             }
         })
     }

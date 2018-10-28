@@ -13,7 +13,6 @@ import type from './component/type.vue';
 import empty from './component/empty.vue';
 
 import '../static/css/comment.css';
-import '../static/css/main.css';
 
 import Axios from 'axios';
 Axios.defaults.crossDomain = true;

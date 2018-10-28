@@ -28,6 +28,7 @@
 
 <script>
 import aside from './aside.vue';
+import '../../static/css/main.css';
 
 export default {
     data() {

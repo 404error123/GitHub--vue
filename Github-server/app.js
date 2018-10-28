@@ -9,11 +9,15 @@ app.use(bodyParser.json());
 
 app.use(session({
     secret: 'itcast',
-    resave: false,
+    resave: true,
+    rolling: true,
+    cookie: {
+        maxAge: 60*1000*60*24
+    },
     saveUninitialized: false 
 }))
-
-app.all('*', function(req, res, next) {
+// 设置跨域
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
@@ -25,7 +29,7 @@ app.all('*', function(req, res, next) {
 
 app.use(router);
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.status(500).json({
         err_code: 500,
         message: err.message

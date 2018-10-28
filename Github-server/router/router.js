@@ -12,7 +12,7 @@ router.post('/login', function(req, res) {
     }).then(function(result) {
         var user, err_code, message;
         if(result) {
-            if(!req.session) {
+            if(!req.session.isLogin) {
                 req.session.isLogin = 'user';
             }
             user = {
@@ -50,36 +50,45 @@ router.get('/signout', function(req, res) {
     })
 })
 
-router.get('/overview', function(req, res) {
-    if(req.session) {
-        Category.find({ show: true }).then((request) => {
-            var data = [];
-            if(request) {
-                for( req of request) {
-                    var a = {
-                        title: req.title,
-                        description: req.description,
-                        type: req.type
-                    };
-                    data.push(a);
-                }
-            } else {
-                data = null;
-            }
-            res.status(200).json({
-                err_code: 1,
-                message: 'success',
-                data: JSON.stringify(data)
-            })
-        }).catch((error) => {
-            console.log(error);
-            res.status(200).json({
-                err_code: 500,
-                message: 'error'
-            })
+// 请求拦截，登录状态验证
+router.all('*', function(req, res, next) {
+    if(req.session.isLogin) {
+        next();
+    } else {
+        res.status(200).json({
+            err_code: 2,
+            message: '重新登录'
         })
-       
     }
+})
+
+router.get('/overview', function(req, res) {
+    Category.find({ show: true }).then((request) => {
+        var data = [];
+        if(request) {
+            for( req of request) {
+                var a = {
+                    title: req.title,
+                    description: req.description,
+                    type: req.type
+                };
+                data.push(a);
+            }
+        } else {
+            data = null;
+        }
+        res.status(200).json({
+            err_code: 1,
+            message: 'success',
+            data: JSON.stringify(data)
+        })
+    }).catch((error) => {
+        console.log(error);
+        res.status(200).json({
+            err_code: 500,
+            message: 'error'
+        })
+    })
 })
 
 module.exports = router
